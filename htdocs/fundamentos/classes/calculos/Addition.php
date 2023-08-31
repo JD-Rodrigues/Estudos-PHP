@@ -1,5 +1,7 @@
 <?php
 
+    namespace calculos;
+
     class Addition {
         public function logCalculo() {
             return "Aqui é a classe de adição!";

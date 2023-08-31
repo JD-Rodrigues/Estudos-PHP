@@ -1,10 +1,13 @@
 <?php
     require 'autoloader.php';
     
-    $pit = new Pitagoras();
+    $pit = new formulas\Pitagoras();
     echo $pit->logFormula();
 
-    $bas = new Baskara();
+    $bas = new formulas\Baskara();
     echo $bas->logFormula();
+
+    $add = new calculos\Addition();
+    echo $add->logCalculo();
 
 ?>

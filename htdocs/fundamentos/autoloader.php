@@ -1,11 +1,13 @@
 <?php
     spl_autoload_register(function($class){
         
-        if(file_exists('classes/formulas/'.$class.'.php')){
-            require 'classes/formulas/'.$class.'.php';
-        } else {
-            echo "O arquivo não existe";
-        }
+        $dir =  __DIR__ . "/classes/";
+        $file = $dir . str_replace("\\", "/", $class) . ".php";
         
+        if(file_exists($file)){
+            require $file;
+        } else {
+            echo "O arquivo" . $file . "não foi encontrado.";
+        }
         
     });
