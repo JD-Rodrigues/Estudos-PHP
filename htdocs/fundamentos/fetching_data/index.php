@@ -4,7 +4,9 @@
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
 
-    $pdo = new PDO('mysql:dbname=test;host=localhost', 'root', '');
+    require 'dbconfig.php';
+
+    
     $query = $pdo->query('SELECT * FROM usuarios');
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     echo '<pre>';
