@@ -1,6 +1,6 @@
 <?php
 
-    namespace calculos;
+    namespace classes\calculos;
 
     class Substraction {
         public function logCalculo() {

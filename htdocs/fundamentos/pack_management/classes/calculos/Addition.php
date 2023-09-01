@@ -1,6 +1,6 @@
 <?php
 
-    namespace calculos;
+    namespace classes\calculos;
 
     class Addition {
         public function logCalculo() {

@@ -1,6 +1,6 @@
 <?php
 
-    namespace formulas;
+    namespace classes\formulas;
 
     class Pitagoras {
         public function logFormula() {

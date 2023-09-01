@@ -6,8 +6,8 @@
 	}
 	$uri .= $_SERVER['HTTP_HOST'];
 
-	$sentence = "Amanhã será outro dia.";
-	$modifiedSentence = str_replace('a', 't', $sentence);
-	echo $modifiedSentence;
+	ini_set('display_errors', '1');
+	ini_set('display_startup_errors', '1');
+	error_reporting(E_ALL);
 
 ?>
