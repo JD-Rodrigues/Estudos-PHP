@@ -1,5 +1,5 @@
 <?php
-    require 'autoloader.php';
+    require 'vendor/autoload.php';
     
     $pit = new formulas\Pitagoras();
     echo $pit->logFormula();
