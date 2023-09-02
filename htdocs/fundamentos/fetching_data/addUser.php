@@ -2,12 +2,16 @@
 
     require 'displayErrorsConfig.php';
     require 'dbconfig.php';
+    require 'utils.php';
 
-    $eMail = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL);
-    $password = filter_input(INPUT_POST,'password');
+    if(!empty($_POST)) {
 
-    $pdo->query("INSERT INTO usuarios (email, senha) VALUES ('$eMail', '$password')");
+        $eMail = testInput(filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL));
+        $password = testInput(filter_input(INPUT_POST,'password'));
 
+        $pdo->query("INSERT INTO usuarios (email, senha) VALUES ('$eMail', '$password')");
+        
+    }
     
 
     header("location: index.php");
