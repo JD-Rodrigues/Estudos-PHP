@@ -3,7 +3,6 @@
     require 'displayErrorsConfig.php';
     require 'dbconfig.php';
     require 'utils.php';
-    
 
     if(!empty($_POST)) {
 
@@ -26,8 +25,10 @@
             $sql->bindValue(':senha', $password);
             $sql->execute();
             header("location: index.php");
+            exit;
         } else {
             header("location: signupForm.php");
+            exit;
         }        
 
     }

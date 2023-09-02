@@ -18,7 +18,7 @@
         <tr>
             <td><?=$user['email']?></td>
             <td><?=$user['senha']?></td>
-            <td><a href="editUser.php?id=<?=$user['id']?>">Editar</a></td>
+            <td><a href="updateUserForm.php?id=<?=$user['id']?>">Editar</a></td>
             <td><a href="delUser.php?id=<?=$user['id']?>">Remover</a></td>
         </tr>
     <?php endforeach; ?>
