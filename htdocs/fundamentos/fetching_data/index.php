@@ -1,11 +1,10 @@
 <?php
     
     require 'displayErrorsConfig.php';
-    require 'dbconfig.php';
     require 'getUsers.php';
     
 
-    $users = $usersData->fetchAll(PDO::FETCH_ASSOC);
+    $users = $preparedUsers->fetchAll(PDO::FETCH_ASSOC);
 
     echo '<pre>';
 
