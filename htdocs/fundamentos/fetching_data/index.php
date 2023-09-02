@@ -2,6 +2,7 @@
     
     require 'displayErrorsConfig.php';
     require 'getUsers.php';
+    require 'header.html';
 
     $users = $preparedUsers->fetchAll(PDO::FETCH_ASSOC);  
     

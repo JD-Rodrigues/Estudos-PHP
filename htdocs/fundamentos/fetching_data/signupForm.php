@@ -1,3 +1,4 @@
+<?php require 'header.html'; ?>
 <h1>Adicionar usuário</h1>
 
 <form method="POST" action="addUser.php">
