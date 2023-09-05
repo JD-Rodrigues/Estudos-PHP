@@ -4,10 +4,10 @@
     require 'utils.php';
     require 'dao/UserDaoMySQL.php';
 
-    if(isset($_POST)) {
+    $eMail = testInput(filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL));
+    $password = testInput(filter_input(INPUT_POST,'password'));
 
-        $eMail = testInput(filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL));
-        $password = testInput(filter_input(INPUT_POST,'password'));
+    if($eMail && $password){
         $id = $_GET['id'];
 
         $userObject = new User();
