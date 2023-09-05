@@ -2,14 +2,13 @@
 
     require 'displayErrorsConfig.php';
     require('dbconfig.php');
+    require 'dao/UserDaoMySQL.php';
 
     if(isset($_GET)) {
         $id = $_GET['id'];
         
-        $preparedDeletion = $pdo->prepare("DELETE FROM usuarios WHERE id = :id");
-        $preparedDeletion->bindValue(':id', $id);
-        $preparedDeletion->execute();
-
+        $userDaoMySql = new UserDaoMySQL($pdo);
+        $userDaoMySql->delete($id);
         
     }
 

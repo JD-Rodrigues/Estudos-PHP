@@ -58,6 +58,8 @@ class UserDaoMySQL {
     }
 
     public function delete($id) {
-        
+        $preparedUsers = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
+        $preparedUsers->bindValue(':id', $id);
+        $preparedUsers->execute();
     }
 }
