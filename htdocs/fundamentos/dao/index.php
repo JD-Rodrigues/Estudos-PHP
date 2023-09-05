@@ -5,8 +5,8 @@
     require 'header.html';   
     require 'dao/UserDaoMySQL.php';
     
-    $userDaoMSQL = new UserDaoMySQL($pdo);
-    $users = $userDaoMSQL->findAll();
+    $userDaoMySQL = new UserDaoMySQL($pdo);
+    $users = $userDaoMySQL->findAll();
     
 ?>
 <h1 style="text-align: center">Usuários</h1>

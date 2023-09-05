@@ -3,6 +3,8 @@
     require 'displayErrorsConfig.php';
     require 'dbconfig.php';
     require 'utils.php';
+    require 'dao/UserDaoMySQL.php';
+    // require 'models/User.php';
 
     if(!empty($_POST)) {
 
@@ -14,16 +16,15 @@
         $emailAlreadyExists->execute();
 
         if($emailAlreadyExists->rowCount() === 0) {
-            //Método menos seguro:
 
-            // $pdo->query("INSERT INTO usuarios (email, senha) VALUES ('$eMail', '$password')");
+            $userObject = new User();
+            $userObject->setEmail($eMail);
+            $userObject->setPassword($password);
 
-            //Método mais seguro:
+            $userDaoMySql = new UserDaoMySQL($pdo);
+            $userDaoMySql->add($userObject);
 
-            $sql = $pdo->prepare("INSERT INTO usuarios (email, senha) VALUES (:email, :senha)");
-            $sql->bindValue(':email', $eMail);
-            $sql->bindValue(':senha', $password);
-            $sql->execute();
+            
             header("location: index.php");
             exit;
         } else {

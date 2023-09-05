@@ -41,7 +41,12 @@ class UserDaoMySQL {
     }
 
     public function add(User $user) {
-        
+        $preparedUsers = $this->pdo->prepare("INSERT INTO usuarios (email, senha) VALUES (:email, :senha)");
+
+        $preparedUsers->bindValue(':email', $user->email);
+        $preparedUsers->bindValue(':senha', $user->password);
+        $preparedUsers->execute();
+
     }
 
     public function update(User $user) {
