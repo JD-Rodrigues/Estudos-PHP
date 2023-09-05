@@ -4,8 +4,9 @@
     require('dbconfig.php');
     require 'dao/UserDaoMySQL.php';
 
-    if(isset($_GET)) {
-        $id = $_GET['id'];
+    $id = $_GET['id'];
+
+    if($id) {        
         
         $userDaoMySql = new UserDaoMySQL($pdo);
         $userDaoMySql->delete($id);
