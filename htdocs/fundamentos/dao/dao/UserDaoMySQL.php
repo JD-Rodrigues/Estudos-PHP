@@ -10,7 +10,7 @@ interface UserDao {
     public function delete($id);
 }
 
-class UserDaoMySQL {
+class UserDaoMySQL implements UserDao {
     public $pdo;
 
     public function __construct(PDO $driver) {
@@ -38,6 +38,14 @@ class UserDaoMySQL {
 
     public function findById($id) {
         
+    }
+
+    public function findByEmail($email) {
+        $preparedUser = $this->pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+        $preparedUser->bindValue(':email', $email);
+        $preparedUser->execute();
+        $user = $preparedUser->fetch();
+        return $user;
     }
 
     public function add(User $user) {

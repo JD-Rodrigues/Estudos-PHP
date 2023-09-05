@@ -5,17 +5,16 @@
     require 'utils.php';
     require 'dao/UserDaoMySQL.php';
 
+
     if(!empty($_POST)) {
 
         $eMail = testInput(filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL));
         $password = testInput(filter_input(INPUT_POST,'password'));
 
-        $emailAlreadyExists = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-        $emailAlreadyExists->bindValue(':email', $eMail);
-        $emailAlreadyExists->execute();
+        $userDao = new UserDaoMySQL($pdo);
+        $searchedUser = $userDao->findByEmail($eMail);
 
-        if($emailAlreadyExists->rowCount() === 0) {
-
+        if(!is_array($searchedUser)) {
             $userObject = new User();
             $userObject->setEmail($eMail);
             $userObject->setPassword($password);
