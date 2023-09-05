@@ -6,11 +6,10 @@
     require 'dao/UserDaoMySQL.php';
 
 
-    if(!empty($_POST)) {
+    $eMail = testInput(filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL));
+    $password = testInput(filter_input(INPUT_POST,'password'));
 
-        $eMail = testInput(filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL));
-        $password = testInput(filter_input(INPUT_POST,'password'));
-
+    if($eMail && $password) {
         $userDao = new UserDaoMySQL($pdo);
         $searchedUser = $userDao->findByEmail($eMail);
 
@@ -30,6 +29,12 @@
             exit;
         }        
 
+    } else {
+        header('location: signupForm.php');
+        exit;
     }
+
+        
+
 
     
