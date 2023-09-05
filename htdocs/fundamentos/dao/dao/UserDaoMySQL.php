@@ -50,7 +50,11 @@ class UserDaoMySQL {
     }
 
     public function update(User $user) {
-        
+        $preparedUsers = $this->pdo->prepare("UPDATE usuarios SET email = :email, senha = :senha WHERE id = :id");
+        $preparedUsers->bindValue(':email', $user->email);
+        $preparedUsers->bindValue(':senha', $user->password);
+        $preparedUsers->bindValue(':id', $user->id);
+        $preparedUsers->execute();
     }
 
     public function delete($id) {

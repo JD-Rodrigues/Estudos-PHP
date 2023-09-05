@@ -4,7 +4,6 @@
     require 'dbconfig.php';
     require 'utils.php';
     require 'dao/UserDaoMySQL.php';
-    // require 'models/User.php';
 
     if(!empty($_POST)) {
 

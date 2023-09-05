@@ -2,6 +2,7 @@
     require 'displayErrorsConfig.php';
     require 'dbconfig.php';
     require 'utils.php';
+    require 'dao/UserDaoMySQL.php';
 
     if(isset($_POST)) {
 
@@ -9,12 +10,13 @@
         $password = testInput(filter_input(INPUT_POST,'password'));
         $id = $_GET['id'];
 
-        $userPreparedToUpdate = $pdo->prepare("UPDATE usuarios SET email = :email, senha = :password WHERE id = :id");
+        $userObject = new User();
+        $userObject->setEmail($eMail);
+        $userObject->setPassword($password);
+        $userObject->setId($id);
 
-        $userPreparedToUpdate->bindValue(':email', $eMail);
-        $userPreparedToUpdate->bindValue(':password', $password);
-        $userPreparedToUpdate->bindValue(':id', $id);
-        $userPreparedToUpdate->execute();
+        $userDaoMySql = new UserDaoMySQL($pdo);
+        $userDaoMySql->update($userObject);
 
         header('location: index.php');
         exit;

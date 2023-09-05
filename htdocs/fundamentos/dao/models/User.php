@@ -3,7 +3,7 @@
     class User {
         public $email;
         public $password;
-        private $id;
+        public $id;
 
         public function getEmail() {
             return $this->email;
