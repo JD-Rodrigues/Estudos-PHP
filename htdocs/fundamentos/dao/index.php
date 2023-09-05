@@ -20,8 +20,8 @@
         <tr>
             <td><?=$user->getEmail()?></td>
             <td><?=$user->getPassword()?></td>
-            <td><a href="updateUserForm.php?id=<?=$user->getId()?>">Editar</a></td>
-            <td><a href="delUser.php?id=<?=$user->getId()?>">Remover</a></td>
+            <td><a href="updateUserForm.php?id=<?=$user->getId()?>">[Editar]</a></td>
+            <td><a href="delUser.php?id=<?=$user->getId()?>" onclick="return confirm('Tem certeza que deseja excluir?')">[Remover]</a></td>
         </tr>
     <?php endforeach; ?>
 </table>
