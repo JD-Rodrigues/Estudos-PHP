@@ -29,3 +29,11 @@
             $this->id = $id;
         }
     }
+
+    interface UserDao {
+        public function findAll();
+        public function findById($id);
+        public function add(User $user);
+        public function update(User $user);
+        public function delete($id);
+    }

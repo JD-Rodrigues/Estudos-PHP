@@ -1,15 +1,6 @@
 <?php 
 require 'models/User.php';
 
-
-interface UserDao {
-    public function findAll();
-    public function findById($id);
-    public function add(User $user);
-    public function update(User $user);
-    public function delete($id);
-}
-
 class UserDaoMySQL implements UserDao {
     public $pdo;
 
