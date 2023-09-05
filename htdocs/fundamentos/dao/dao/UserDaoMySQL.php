@@ -37,7 +37,12 @@ class UserDaoMySQL implements UserDao {
     }
 
     public function findById($id) {
-        
+        $preparedUser = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $preparedUser->bindValue(':id', $id);
+        $preparedUser->execute();
+        $user = $preparedUser->fetch();
+
+        return $user;
     }
 
     public function findByEmail($email) {
