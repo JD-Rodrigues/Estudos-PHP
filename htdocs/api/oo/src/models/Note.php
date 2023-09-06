@@ -1,5 +1,4 @@
 <?php
-require '../../displayErrors.php';
 
 class Note {
     private $id;
