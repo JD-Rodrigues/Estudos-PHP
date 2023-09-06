@@ -25,7 +25,7 @@ class Note {
 }
 
 interface NotesDaoInterface {
-    public function getAllNotes(Note $noteObject);
+    public function getAllNotes();
     public function getNoteById(int $id);
     public function createNote(Note $noteObject);
     public function updateNote(int $id);

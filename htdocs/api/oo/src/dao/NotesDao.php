@@ -1,6 +1,5 @@
 <?php
-require '../../displayErrors.php';
-require '../models/Note.php';
+require '../../models/Note.php';
 
 class NotesDao implements NotesDaoInterface {
     private $pdo;
@@ -9,8 +8,12 @@ class NotesDao implements NotesDaoInterface {
         $this->pdo = $driver;
     }
 
-    public function getAllNotes(Note $noteObject){
+    public function getAllNotes(){
+        $preparedNotes = $this->pdo->prepare("SELECT * FROM notes");
+        $preparedNotes->execute();
+        $notes = $preparedNotes->fetchAll(PDO::FETCH_ASSOC);
 
+        return $notes;
     }
 
     public function getNoteById(int $id){
