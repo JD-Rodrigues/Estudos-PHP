@@ -27,8 +27,11 @@ class NotesDao implements NotesDaoInterface {
         $preparedNotes->execute();
     }
 
-    public function updateNote(int $id){
-
+    public function updateNote(Note $noteObject){
+        $preparedNotes = $this->pdo->prepare("UPDATE notes SET title = :title, body = :body WHERE id = :id");
+        $preparedNotes->bindValue(':title', $noteObject->title);
+        $preparedNotes->bindValue(':body', $noteObject->body);
+        $preparedNotes->execute();
     }
 
     public function deleteNote(int $id){
