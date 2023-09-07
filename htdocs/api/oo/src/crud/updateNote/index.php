@@ -23,6 +23,9 @@ if($method === 'PUT'){
 
             $notesDao = new NotesDao($pdo);
             $notesDao->updateNote($noteObject);
+
+            echo "A nota de id $id foi atualizada com as seguintes informações: <br>
+            title: $title <br> body: $body.";
             
         } else {
             echo "Não há nota com o id informado na base de dados.";
