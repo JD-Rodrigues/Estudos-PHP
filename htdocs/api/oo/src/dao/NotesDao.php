@@ -17,7 +17,12 @@ class NotesDao implements NotesDaoInterface {
     }
 
     public function getNoteById(int $id){
+        $preparedNote = $this->pdo->prepare("SELECT * FROM notes WHERE id = :id");
+        $preparedNote->bindValue(':id', $id);
+        $preparedNote->execute();
+        $note = $preparedNote->fetch();
 
+        return $note;
     }
 
     public function createNote(Note $noteObject){
@@ -31,6 +36,7 @@ class NotesDao implements NotesDaoInterface {
         $preparedNotes = $this->pdo->prepare("UPDATE notes SET title = :title, body = :body WHERE id = :id");
         $preparedNotes->bindValue(':title', $noteObject->title);
         $preparedNotes->bindValue(':body', $noteObject->body);
+        $preparedNotes->bindValue(':id', $noteObject->id);
         $preparedNotes->execute();
     }
 
