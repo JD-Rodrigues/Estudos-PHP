@@ -41,7 +41,7 @@ class NotesDao implements NotesDaoInterface {
     }
 
     public function deleteNote(int $id){
-        $preparedToDeletion = $this->pdo->prepare("DELETE * FROM notes WHERE id = :id");
+        $preparedToDeletion = $this->pdo->prepare("DELETE FROM notes WHERE id = :id");
         $preparedToDeletion->bindValue(':id', $id);
         $preparedToDeletion->execute();
     }

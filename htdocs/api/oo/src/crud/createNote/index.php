@@ -15,7 +15,8 @@ if($method === 'POST') {
         $notesDao = new NotesDao($pdo);
         $notesDao->createNote($noteObject);
 
-        header('location: ../readAllNotes');
+        echo "Você adicionou a seguinte nota: <br> title: $title <br> body: $body";
+    
     }else {
         header('location: ../../addNoteForm.html');
     }
