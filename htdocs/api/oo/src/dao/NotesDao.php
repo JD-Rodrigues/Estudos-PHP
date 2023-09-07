@@ -11,8 +11,13 @@ class NotesDao implements NotesDaoInterface {
     public function getAllNotes(){
         $preparedNotes = $this->pdo->prepare("SELECT * FROM notes");
         $preparedNotes->execute();
-        $notes = $preparedNotes->fetchAll(PDO::FETCH_ASSOC);
+        $rawNotes = $preparedNotes->fetchAll(PDO::FETCH_ASSOC);
 
+        $notes = [];
+        
+        foreach($rawNotes as $rawNote) {
+            $notes[] = ['id'=>$rawNote['id'],'title'=>$rawNote['title']];
+        }
         return $notes;
     }
 
