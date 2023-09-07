@@ -4,9 +4,16 @@ require '../../../dbConfig.php';
 require '../../../apiConfig.php';
 require '../../dao/NotesDao.php';
 
-$notesDao = new NotesDao($pdo);
-$allNotes = $notesDao->getAllNotes();
+$method = $_SERVER['REQUEST_METHOD'];
 
-$apiData = $allNotes;
+if($method === 'GET') {
+    $notesDao = new NotesDao($pdo);
+    $allNotes = $notesDao->getAllNotes();
 
-require '../../return.php';
+    $apiData = $allNotes;
+
+    require '../../return.php';
+
+} else {
+    echo "Esta rota só aceita requisições GET!";
+}
