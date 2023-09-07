@@ -25,7 +25,7 @@ class NotesDao implements NotesDaoInterface {
         $preparedNote = $this->pdo->prepare("SELECT * FROM notes WHERE id = :id");
         $preparedNote->bindValue(':id', $id);
         $preparedNote->execute();
-        $note = $preparedNote->fetch();
+        $note = $preparedNote->fetch(PDO::FETCH_ASSOC);
 
         return $note;
     }
