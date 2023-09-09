@@ -23,9 +23,11 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Example $example)
+    public function show(Request $request)
     {
-        //
+        $id = $request->input('id');
+
+        return Author::find($id);
     }
 
     /**
