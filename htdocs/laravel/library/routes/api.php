@@ -18,6 +18,7 @@ Route::post('/livros', [LivroController::class, 'store']);
 Route::get('/livros', [LivroController::class, 'index']);
 Route::get('/livro', [LivroController::class, 'show']);
 Route::put('/livro', [LivroController::class, 'update']);
+Route::delete('/livro', [LivroController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
