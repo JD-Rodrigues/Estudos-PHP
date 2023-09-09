@@ -61,8 +61,15 @@ class NacionalidadeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Example $example)
+    public function destroy(Request $request)
     {
-        //
+        $nacionalidadeExists = Nacionalidade::find($request->input('id'));
+
+        if($nacionalidadeExists) {
+            $nacionalidadeExists->delete();
+            return $nacionalidadeExists;
+        } else {
+            return "Não existe uma nacionalidade com o id informado cadastrada no sistema.";
+        }
     }
 }
