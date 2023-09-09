@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\NacionalidadeController;
 
 
 /*
@@ -26,6 +27,12 @@ Route::get('/autores', [AuthorController::class, 'index']);
 Route::get('/autor', [AuthorController::class, 'show']);
 Route::put('/autor', [AuthorController::class, 'update']);
 Route::delete('/autor', [AuthorController::class, 'destroy']);
+Route::get('/nacionalidades', [NacionalidadeController::class, 'index']);
+Route::get('/nacionalidade', [NacionalidadeController::class, 'show']);
+Route::post('/nacionalidade', [NacionalidadeController::class, 'store']);
+Route::put('/nacionalidade', [NacionalidadeController::class, 'update']);
+Route::delete('/nacionalidade', [NacionalidadeController::class, 'destroy']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
