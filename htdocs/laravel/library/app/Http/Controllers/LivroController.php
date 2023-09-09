@@ -56,8 +56,10 @@ class LivroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Example $example)
+    public function destroy(Request $request)
     {
-        //
+        $bookToDelete = Livro::find($request->input('id'));
+
+        $bookToDelete && $bookToDelete->delete();
     }
 }
