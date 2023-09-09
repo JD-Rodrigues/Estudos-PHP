@@ -26,9 +26,11 @@ class NacionalidadeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Example $example)
+    public function show(Request $request)
     {
-        //
+        $nacionalidade = Nacionalidade::find($request->input('id'));
+
+        return $nacionalidade ? $nacionalidade : "Não há uma nacionalidade com o id informado na base de dados.";
     }
 
     /**
