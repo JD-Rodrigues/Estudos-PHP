@@ -33,9 +33,20 @@ class AuthorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Example $example)
+    public function update(Request $request)
     {
-        //
+        $authorExists = Author::findOrFail($request->input('id'));
+
+        $requestArray = $request->all();
+
+        foreach($requestArray as $input=>$value) {
+            if(array_key_exists($input, $authorExists->getAttributes())) {
+                $authorExists->$input = $value;
+            }
+        }
+
+        $authorExists->save();
+
     }
 
     /**
