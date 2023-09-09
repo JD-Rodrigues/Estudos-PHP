@@ -52,8 +52,10 @@ class AuthorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Example $example)
+    public function destroy(Request $request)
     {
-        //
+        $authorExists = Author::find($request->input('id'));
+
+        $authorExists && $authorExists->delete();
     }
 }
