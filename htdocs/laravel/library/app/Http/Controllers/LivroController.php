@@ -20,37 +20,74 @@ class LivroController extends Controller
      */
     public function store(Request $request)
     {
-        return Livro::create($request->all());
+        try {
+            $validated = $request->validate([
+                'nome'=>'string|max:255|required',
+                'author_id'=>'required|integer',
+                'ano_de_lancamento'=>'required|integer'
+            ]);
+
+            return Livro::create($request->all());
+
+        } catch (\Throwable $e) {
+
+            return response()->json(['errors' => $e->getMessage()], 422);
+
+        }        
     }
 
     /**
      * Display the specified resource.
      */
     public function show(Request $request)
-    {
+    {   
+        try {
+            $validated = $request->validate([
+                'id'=>'required|integer',
+            ]);
+
+            return response()->json(Livro::find($request->input('id')));
+
+        } catch (\Throwable $e) {
+            return response()->json(['errors' => $e->getMessage()], 422);
+        }        
        
-        return response()->json(Livro::find($request->input('id')));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request)
-    {
-        $bookToUpdate = Livro::findOrFail($request->input('id'));
+    {           
 
-        $requestArray = $request->all();
+        try {
+            
+            $request->validate([
+                'id'=>'integer|required',
+                'nome'=>'string|max:255',
+                'author_id'=>'integer',
+                'ano_de_lancamento'=>'integer'
+            ]);
 
-        
+            $bookToUpdate = Livro::findOrFail($request->input('id'));
 
-        foreach($requestArray as $input=>$value){
-            if(array_key_exists($input, $bookToUpdate->getAttributes())) {
-                $bookToUpdate->$input = $value;
+            $inputs = $request->all();
+
+            if($bookToUpdate) {
+                foreach($inputs as $input=>$value){
+                    if(array_key_exists($input, $bookToUpdate->getAttributes())) {
+                        $bookToUpdate->$input = $value;
+                    }
+                }
             }
-        }
+    
+            $bookToUpdate->save();
+            return $bookToUpdate;
 
-        $bookToUpdate->save();
-        
+        } catch (\Throwable $e) {
+            return response()->json(['errors' => $e->getMessage()], 422);
+        }
     }
 
     /**
@@ -58,8 +95,14 @@ class LivroController extends Controller
      */
     public function destroy(Request $request)
     {
-        $bookToDelete = Livro::find($request->input('id'));
+        try {
+            $request->validate(['id'=>'integer|required']);
 
-        $bookToDelete && $bookToDelete->delete();
+            $bookToDelete = Livro::find($request->input('id'));
+
+            return $bookToDelete->delete();
+        } catch (\Throwable $th) {
+            return $th->getMessage() === "Call to a member function delete() on null" ? 'Não há livro com esse id.' : $th->getMessage();
+        }
     }
 }
