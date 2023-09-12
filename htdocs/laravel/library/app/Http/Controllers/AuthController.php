@@ -8,6 +8,8 @@ use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
+
+
     public function register(Request $request) {
 
         $request->validate([
@@ -49,7 +51,10 @@ class AuthController extends Controller
         
     }
 
-    public function logout() {
+    public function logout(Request $request) {
+
+        $request->user()->currentAccessToken()->delete();
+        return response('Logout efetuado com sucesso!');
         
     }
 }
