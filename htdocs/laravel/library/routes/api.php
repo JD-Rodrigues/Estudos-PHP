@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\NacionalidadeController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -32,6 +33,7 @@ Route::get('/nacionalidade', [NacionalidadeController::class, 'show']);
 Route::post('/nacionalidade', [NacionalidadeController::class, 'store']);
 Route::put('/nacionalidade', [NacionalidadeController::class, 'update']);
 Route::delete('/nacionalidade', [NacionalidadeController::class, 'destroy']);
+Route::post('/register', [AuthController::class, 'register']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
