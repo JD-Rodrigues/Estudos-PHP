@@ -30,7 +30,22 @@ class AuthController extends Controller
 
     }
 
-    public function login() {
+    public function login(Request $request) {
+
+        $request->validate([
+            'email'=>'required|email',
+            'password'=>'required|string'
+        ]);
+
+        if(auth()->attempt($request->only(['email', 'password']))){
+            return response(
+                [
+                    'Authorized', 
+                    200, 
+                    'Token:'=>$request->user()->createToken('default_user')->plainTextToken
+                ]);
+        }else{
+            return response('Unauthorized', 400);       }
         
     }
 
