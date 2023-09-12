@@ -34,6 +34,7 @@ Route::post('/nacionalidade', [NacionalidadeController::class, 'store']);
 Route::put('/nacionalidade', [NacionalidadeController::class, 'update']);
 Route::delete('/nacionalidade', [NacionalidadeController::class, 'destroy']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
