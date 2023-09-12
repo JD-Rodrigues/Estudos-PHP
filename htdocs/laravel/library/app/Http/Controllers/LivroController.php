@@ -100,7 +100,11 @@ class LivroController extends Controller
 
             $bookToDelete = Livro::find($request->input('id'));
 
-            return $bookToDelete->delete();
+            $bookToDelete->delete();
+
+            return [
+                'livro deletado:'=>$bookToDelete
+            ];
         } catch (\Throwable $th) {
             return $th->getMessage() === "Call to a member function delete() on null" ? 'Não há livro com esse id.' : $th->getMessage();
         }
